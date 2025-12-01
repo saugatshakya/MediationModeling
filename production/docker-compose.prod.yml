@@ -1,0 +1,59 @@
+# Production Docker Compose configuration
+
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    container_name: exam-predictor-prod
+    ports:
+      - "8501:8501"
+    volumes:
+      # Only mount artifacts as read-only in production
+      - ./artifacts:/app/artifacts:ro
+      - ./experiments:/app/experiments:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_HEADLESS=true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    networks:
+      - exam-predictor-prod
+
+  # Nginx reverse proxy (optional, for SSL/load balancing)
+  nginx:
+    image: nginx:alpine
+    container_name: exam-predictor-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - frontend
+    restart: always
+    networks:
+      - exam-predictor-prod
+    profiles:
+      - with-nginx
+
+networks:
+  exam-predictor-prod:
+    driver: bridge

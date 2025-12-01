@@ -1,0 +1,46 @@
+digraph Model_Development {
+    rankdir=TB;
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
+
+    // Input
+    Engineered_Features [label="Engineered Features\n(10 features)", fillcolor=lightblue];
+
+    // Preprocessing
+    Preprocessing [label="Preprocessing Pipeline", fillcolor=pink];
+    Imputation [label="Imputation\n• Numeric: median\n• Categorical: most_frequent", fillcolor=pink];
+    Standard_Scaling [label="Standard Scaling\nmean=0, std=1", fillcolor=pink];
+    OneHot_Encoding [label="One-Hot Encoding\ncategorical features", fillcolor=pink];
+
+    // Model training
+    Model_Training [label="Model Training", fillcolor=red];
+    RandomForest [label="Random Forest\nBase model", fillcolor=red];
+    Hyperparameter_Tuning [label="Grid Search CV\n• n_estimators: [100, 200]\n• max_depth: [10, 20, None]\n• 5-fold CV", fillcolor=red];
+
+    // Evaluation
+    Model_Evaluation [label="Model Evaluation", fillcolor=purple];
+    CV_Scores [label="Cross-Validation\nR² = 0.956 ± 0.005", fillcolor=purple];
+    Test_Scores [label="Test Set Performance\nR² = 0.969, MSE = 9.02", fillcolor=purple];
+
+    // Final model
+    Best_Model [label="Best Model\n(RandomForest tuned)", fillcolor=lightgreen];
+
+    // Edges
+    Engineered_Features -> Preprocessing;
+    Preprocessing -> Imputation;
+    Imputation -> Standard_Scaling;
+    Standard_Scaling -> OneHot_Encoding;
+
+    OneHot_Encoding -> Model_Training;
+    Model_Training -> RandomForest;
+    RandomForest -> Hyperparameter_Tuning;
+
+    Hyperparameter_Tuning -> Model_Evaluation;
+    Model_Evaluation -> CV_Scores;
+    Model_Evaluation -> Test_Scores;
+
+    Test_Scores -> Best_Model;
+
+    labelloc="t";
+    label="Slide 3: Model Development Pipeline";
+}

@@ -1,0 +1,50 @@
+digraph Application_Deployment {
+    rankdir=TB;
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
+
+    // Input
+    User_Input [label="User Input\n• Daily timetable (24h)\n• Drink selection (caffeine)\n• Additional factors", fillcolor=lightblue];
+
+    // Feature calculation
+    Feature_Calculation [label="Real-time Feature Calculation", fillcolor=orange];
+    Mental_Health_Calc [label="Mental Health\n(lifestyle formula)", fillcolor=orange];
+    Sleep_Quality_Calc [label="Sleep Quality\n(physiological formula)", fillcolor=orange];
+    Stress_Focus_Calc [label="Stress & Focus Proxies\n(caffeine + lifestyle)", fillcolor=orange];
+
+    // Model prediction
+    Model_Prediction [label="ML Model Prediction", fillcolor=red];
+    Normalization [label="Input Normalization\nto training distribution", fillcolor=red];
+    Score_Prediction [label="Exam Score Prediction\n(RandomForest model)", fillcolor=red];
+
+    // Optimization
+    Optimization [label="Score Optimization", fillcolor=purple];
+    Target_Analysis [label="Target Score Analysis", fillcolor=purple];
+    Recommendations [label="Personalized\nRecommendations", fillcolor=purple];
+
+    // Output
+    Results_Display [label="Results Display\n• Predicted score\n• Optimization tips\n• Visualizations", fillcolor=lightgreen];
+
+    // Edges
+    User_Input -> Feature_Calculation;
+    Feature_Calculation -> Mental_Health_Calc;
+    Feature_Calculation -> Sleep_Quality_Calc;
+    Feature_Calculation -> Stress_Focus_Calc;
+
+    Mental_Health_Calc -> Model_Prediction;
+    Sleep_Quality_Calc -> Model_Prediction;
+    Stress_Focus_Calc -> Model_Prediction;
+
+    Model_Prediction -> Normalization;
+    Normalization -> Score_Prediction;
+
+    Score_Prediction -> Results_Display;
+    Score_Prediction -> Optimization;
+
+    Optimization -> Target_Analysis;
+    Target_Analysis -> Recommendations;
+    Recommendations -> Results_Display;
+
+    labelloc="t";
+    label="Slide 4: Application Deployment";
+}

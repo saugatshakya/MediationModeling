@@ -1,0 +1,43 @@
+digraph Feature_Engineering {
+    rankdir=TB;
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
+
+    // Input data
+    Raw_Features [label="Raw Input Features\n(study hours, sleep, exercise,\nsocial media, caffeine, etc.)", fillcolor=lightblue];
+
+    // Feature engineering
+    Feature_Engineering [label="Feature Engineering", fillcolor=orange];
+
+    Mental_Health [label="Mental Health Rating\n8 - 0.3×social - 0.2×netflix +\n0.4×exercise + 0.3×sleep_hours", fillcolor=orange];
+
+    Sleep_Quality [label="Sleep Quality\n0.5×sleep + 0.3×exercise +\n0.2×mental - 0.3×caffeine", fillcolor=orange];
+
+    Stress_Proxy [label="Stress Proxy\nrescale(gC - sleep_quality +\n0.4×social + 0.3×netflix +\n0.2×study + 0.3×part_job -\n0.3×exercise - 0.4×mental)", fillcolor=orange];
+
+    Focus_Proxy [label="Focus Proxy\nrescale(sleep_duration + sleep_quality -\nstress + fC + 0.4×exercise +\n0.4×mental + 0.3×attendance -\n0.3×social - 0.2×netflix)", fillcolor=orange];
+
+    // Output
+    Engineered_Features [label="Engineered Features\nReady for Modeling", fillcolor=lightgreen];
+
+    // Edges
+    Raw_Features -> Feature_Engineering;
+    Feature_Engineering -> Mental_Health;
+    Feature_Engineering -> Sleep_Quality;
+    Mental_Health -> Sleep_Quality [label="dependency"];
+    Mental_Health -> Stress_Proxy;
+    Sleep_Quality -> Stress_Proxy;
+    Mental_Health -> Focus_Proxy;
+    Sleep_Quality -> Focus_Proxy;
+    Stress_Proxy -> Focus_Proxy [label="dependency"];
+    Raw_Features -> Stress_Proxy [style=dashed];
+    Raw_Features -> Focus_Proxy [style=dashed];
+
+    Mental_Health -> Engineered_Features;
+    Sleep_Quality -> Engineered_Features;
+    Stress_Proxy -> Engineered_Features;
+    Focus_Proxy -> Engineered_Features;
+
+    labelloc="t";
+    label="Slide 2: Feature Engineering Pipeline";
+}

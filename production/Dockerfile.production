@@ -1,0 +1,55 @@
+# Production-optimized Dockerfile with pre-trained models
+
+FROM python:3.9-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    MODEL_PATH=/app/artifacts/baseline_model.joblib
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir gunicorn
+
+# Copy application code
+COPY src/ ./src/
+COPY frontend/ ./frontend/
+
+# Create directories for artifacts and experiments
+RUN mkdir -p ./artifacts ./experiments
+
+# Copy pre-trained models and processed data (if available)
+# Note: Build with --build-arg to include these, or mount as volumes
+# COPY artifacts/ ./artifacts/
+# COPY experiments/ ./experiments/
+
+# Create non-root user for security
+RUN useradd -m -u 1000 appuser && \
+    chown -R appuser:appuser /app
+
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8501/_stcore/health || exit 1
+
+EXPOSE 8501
+
+# Run Streamlit with production settings
+CMD ["streamlit", "run", "frontend/app.py", \
+     "--server.port=8501", \
+     "--server.address=0.0.0.0", \
+     "--server.headless=true", \
+     "--server.enableCORS=false", \
+     "--server.enableXsrfProtection=true", \
+     "--browser.gatherUsageStats=false"]

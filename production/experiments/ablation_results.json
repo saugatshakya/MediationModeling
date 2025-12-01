@@ -1,0 +1,1064 @@
+[
+  {
+    "experiment_name": "baseline_all_features",
+    "config": {
+      "name": "baseline_all_features",
+      "features_to_use": [
+        "study_hours_per_day",
+        "social_media_hours",
+        "netflix_hours",
+        "attendance_percentage",
+        "sleep_hours",
+        "exercise_frequency",
+        "caffeine_intake",
+        "sleep_quality",
+        "stress_proxy",
+        "focus_proxy"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "linear",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": false
+    },
+    "selected_features": [
+      "study_hours_per_day",
+      "social_media_hours",
+      "netflix_hours",
+      "attendance_percentage",
+      "sleep_hours",
+      "exercise_frequency",
+      "caffeine_intake",
+      "sleep_quality",
+      "stress_proxy",
+      "focus_proxy"
+    ],
+    "metrics": {
+      "mse": 50.56521067837515,
+      "r2": 0.8240147682665433,
+      "mae": 5.716904657631528,
+      "rmse": 7.1109219288623295,
+      "mape": 9.18788845375274,
+      "smape": 8.916554203059784,
+      "mase": 0.2928217406885332,
+      "rmspe": 12.54784393286488,
+      "huber_loss": 5.238127828715282
+    },
+    "cv_scores": {
+      "r2_scores": "[0.80698052 0.81061151 0.80918735 0.79702692 0.82904783]",
+      "mean_cv_r2": 0.8105708263381699,
+      "std_cv_r2": 0.010388868332190545
+    },
+    "training_time": 0.015252113342285156,
+    "inference_time": 0.0013680458068847656,
+    "best_params": null,
+    "feature_importance": [
+      {
+        "feature": "study_hours_per_day",
+        "importance": 13.77982174537835
+      },
+      {
+        "feature": "social_media_hours",
+        "importance": 3.0711690508985394
+      },
+      {
+        "feature": "sleep_quality",
+        "importance": 2.5775909766018383
+      },
+      {
+        "feature": "netflix_hours",
+        "importance": 2.311127774004005
+      },
+      {
+        "feature": "caffeine_intake",
+        "importance": 1.5841281445684905
+      },
+      {
+        "feature": "attendance_percentage",
+        "importance": 1.3640376243261763
+      },
+      {
+        "feature": "exercise_frequency",
+        "importance": 1.317530692463846
+      },
+      {
+        "feature": "sleep_hours",
+        "importance": 1.0499404102857828
+      },
+      {
+        "feature": "stress_proxy",
+        "importance": 0.7982756162191099
+      },
+      {
+        "feature": "focus_proxy",
+        "importance": 0.661938834937915
+      }
+    ]
+  },
+  {
+    "experiment_name": "ablate_study_habits",
+    "config": {
+      "name": "ablate_study_habits",
+      "features_to_use": [
+        "social_media_hours",
+        "netflix_hours",
+        "sleep_hours",
+        "exercise_frequency",
+        "caffeine_intake",
+        "sleep_quality",
+        "stress_proxy",
+        "focus_proxy"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "linear",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": false
+    },
+    "selected_features": [
+      "social_media_hours",
+      "netflix_hours",
+      "sleep_hours",
+      "exercise_frequency",
+      "caffeine_intake",
+      "sleep_quality",
+      "stress_proxy",
+      "focus_proxy"
+    ],
+    "metrics": {
+      "mse": 207.39749847081484,
+      "r2": 0.2781816521742526,
+      "mae": 11.51228615567488,
+      "rmse": 14.401301971377965,
+      "mape": 19.267750091790166,
+      "smape": 17.53023987262124,
+      "mase": 0.5896630910066325,
+      "rmspe": 28.244743353501022,
+      "huber_loss": 11.022395375587069
+    },
+    "cv_scores": {
+      "r2_scores": "[0.27330438 0.28590273 0.25250063 0.26059819 0.29035255]",
+      "mean_cv_r2": 0.2725316951102279,
+      "std_cv_r2": 0.014426478698447084
+    },
+    "training_time": 0.008097171783447266,
+    "inference_time": 0.00144195556640625,
+    "best_params": null,
+    "feature_importance": [
+      {
+        "feature": "focus_proxy",
+        "importance": 9.165836596518773
+      },
+      {
+        "feature": "caffeine_intake",
+        "importance": 9.150999890053603
+      },
+      {
+        "feature": "social_media_hours",
+        "importance": 4.572356499390335
+      },
+      {
+        "feature": "netflix_hours",
+        "importance": 3.725157124025965
+      },
+      {
+        "feature": "stress_proxy",
+        "importance": 2.9128970179274103
+      },
+      {
+        "feature": "sleep_quality",
+        "importance": 0.5300657268359877
+      },
+      {
+        "feature": "exercise_frequency",
+        "importance": 0.4450690257200151
+      },
+      {
+        "feature": "sleep_hours",
+        "importance": 0.3102023339378392
+      }
+    ]
+  },
+  {
+    "experiment_name": "ablate_screen_time",
+    "config": {
+      "name": "ablate_screen_time",
+      "features_to_use": [
+        "study_hours_per_day",
+        "attendance_percentage",
+        "sleep_hours",
+        "exercise_frequency",
+        "caffeine_intake",
+        "sleep_quality",
+        "stress_proxy",
+        "focus_proxy"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "linear",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": false
+    },
+    "selected_features": [
+      "study_hours_per_day",
+      "attendance_percentage",
+      "sleep_hours",
+      "exercise_frequency",
+      "caffeine_intake",
+      "sleep_quality",
+      "stress_proxy",
+      "focus_proxy"
+    ],
+    "metrics": {
+      "mse": 63.69684659286649,
+      "r2": 0.7783119231988086,
+      "mae": 6.377211538281885,
+      "rmse": 7.981030421747964,
+      "mape": 10.41950702273595,
+      "smape": 10.0417024829952,
+      "mase": 0.32664287673328884,
+      "rmspe": 14.60568063199292,
+      "huber_loss": 5.8930499139350365
+    },
+    "cv_scores": {
+      "r2_scores": "[0.7651028  0.76412579 0.76617282 0.74435431 0.79135689]",
+      "mean_cv_r2": 0.7662225208687625,
+      "std_cv_r2": 0.014937252631307883
+    },
+    "training_time": 0.00891423225402832,
+    "inference_time": 0.0014619827270507812,
+    "best_params": null,
+    "feature_importance": [
+      {
+        "feature": "study_hours_per_day",
+        "importance": 14.388796555910913
+      },
+      {
+        "feature": "stress_proxy",
+        "importance": 2.8556457183935193
+      },
+      {
+        "feature": "sleep_quality",
+        "importance": 1.9083904959012772
+      },
+      {
+        "feature": "exercise_frequency",
+        "importance": 1.4585532551701985
+      },
+      {
+        "feature": "attendance_percentage",
+        "importance": 1.374837962442254
+      },
+      {
+        "feature": "sleep_hours",
+        "importance": 1.3061027425716163
+      },
+      {
+        "feature": "focus_proxy",
+        "importance": 0.7329380809861037
+      },
+      {
+        "feature": "caffeine_intake",
+        "importance": 0.17717908141897418
+      }
+    ]
+  },
+  {
+    "experiment_name": "ablate_lifestyle",
+    "config": {
+      "name": "ablate_lifestyle",
+      "features_to_use": [
+        "study_hours_per_day",
+        "social_media_hours",
+        "netflix_hours",
+        "attendance_percentage",
+        "stress_proxy",
+        "focus_proxy"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "linear",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": false
+    },
+    "selected_features": [
+      "study_hours_per_day",
+      "social_media_hours",
+      "netflix_hours",
+      "attendance_percentage",
+      "stress_proxy",
+      "focus_proxy"
+    ],
+    "metrics": {
+      "mse": 59.180834763010296,
+      "r2": 0.7940292786241299,
+      "mae": 6.178571287948205,
+      "rmse": 7.692908082319085,
+      "mape": 9.950024353530026,
+      "smape": 9.644278099661733,
+      "mase": 0.31646845764517834,
+      "rmspe": 13.778069043755604,
+      "huber_loss": 5.693044601141362
+    },
+    "cv_scores": {
+      "r2_scores": "[0.78044619 0.77880317 0.78462217 0.77057503 0.80651379]",
+      "mean_cv_r2": 0.7841920688614824,
+      "std_cv_r2": 0.012057693777071492
+    },
+    "training_time": 0.006712913513183594,
+    "inference_time": 0.0014300346374511719,
+    "best_params": null,
+    "feature_importance": [
+      {
+        "feature": "study_hours_per_day",
+        "importance": 14.306010829318073
+      },
+      {
+        "feature": "focus_proxy",
+        "importance": 3.4419977256273757
+      },
+      {
+        "feature": "social_media_hours",
+        "importance": 2.458241112910375
+      },
+      {
+        "feature": "netflix_hours",
+        "importance": 1.9847167585285177
+      },
+      {
+        "feature": "attendance_percentage",
+        "importance": 1.110397429627753
+      },
+      {
+        "feature": "stress_proxy",
+        "importance": 0.5757977383090198
+      }
+    ]
+  },
+  {
+    "experiment_name": "ablate_synthetic",
+    "config": {
+      "name": "ablate_synthetic",
+      "features_to_use": [
+        "study_hours_per_day",
+        "social_media_hours",
+        "netflix_hours",
+        "attendance_percentage",
+        "sleep_hours",
+        "exercise_frequency",
+        "caffeine_intake",
+        "sleep_quality"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "linear",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": false
+    },
+    "selected_features": [
+      "study_hours_per_day",
+      "social_media_hours",
+      "netflix_hours",
+      "attendance_percentage",
+      "sleep_hours",
+      "exercise_frequency",
+      "caffeine_intake",
+      "sleep_quality"
+    ],
+    "metrics": {
+      "mse": 50.91593868119294,
+      "r2": 0.82279410789505,
+      "mae": 5.739350989457891,
+      "rmse": 7.135540531816279,
+      "mape": 9.213949455477673,
+      "smape": 8.939379963321201,
+      "mase": 0.29397144920233426,
+      "rmspe": 12.558938487568652,
+      "huber_loss": 5.259722409050845
+    },
+    "cv_scores": {
+      "r2_scores": "[0.80534004 0.81056357 0.80715519 0.79545501 0.82719456]",
+      "mean_cv_r2": 0.809141675819753,
+      "std_cv_r2": 0.010331037563071946
+    },
+    "training_time": 0.009359121322631836,
+    "inference_time": 0.001302957534790039,
+    "best_params": null,
+    "feature_importance": [
+      {
+        "feature": "study_hours_per_day",
+        "importance": 13.859995196633616
+      },
+      {
+        "feature": "sleep_quality",
+        "importance": 3.6685732027962885
+      },
+      {
+        "feature": "social_media_hours",
+        "importance": 3.142466514591088
+      },
+      {
+        "feature": "netflix_hours",
+        "importance": 2.392126113826306
+      },
+      {
+        "feature": "attendance_percentage",
+        "importance": 1.4045012031447817
+      },
+      {
+        "feature": "exercise_frequency",
+        "importance": 1.4030007898325307
+      },
+      {
+        "feature": "caffeine_intake",
+        "importance": 1.2198112406570822
+      },
+      {
+        "feature": "sleep_hours",
+        "importance": 0.9277690374586204
+      }
+    ]
+  },
+  {
+    "experiment_name": "only_study_habits",
+    "config": {
+      "name": "only_study_habits",
+      "features_to_use": [
+        "study_hours_per_day",
+        "attendance_percentage"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "linear",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": false
+    },
+    "selected_features": [
+      "study_hours_per_day",
+      "attendance_percentage"
+    ],
+    "metrics": {
+      "mse": 93.0018210090322,
+      "r2": 0.6763200073265485,
+      "mae": 7.7682533891079695,
+      "rmse": 9.643745175450883,
+      "mape": 12.59778164811069,
+      "smape": 12.027024435121254,
+      "mase": 0.39789249877932903,
+      "rmspe": 17.561700150586695,
+      "huber_loss": 7.281034764984571
+    },
+    "cv_scores": {
+      "r2_scores": "[0.68075195 0.67066202 0.67970753 0.6551807  0.69873866]",
+      "mean_cv_r2": 0.6770081711014727,
+      "std_cv_r2": 0.014214278524149365
+    },
+    "training_time": 0.0038068294525146484,
+    "inference_time": 0.0012540817260742188,
+    "best_params": null,
+    "feature_importance": [
+      {
+        "feature": "study_hours_per_day",
+        "importance": 13.769137095510148
+      },
+      {
+        "feature": "attendance_percentage",
+        "importance": 1.2745360210401848
+      }
+    ]
+  },
+  {
+    "experiment_name": "only_screen_time",
+    "config": {
+      "name": "only_screen_time",
+      "features_to_use": [
+        "social_media_hours",
+        "netflix_hours"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "linear",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": false
+    },
+    "selected_features": [
+      "social_media_hours",
+      "netflix_hours"
+    ],
+    "metrics": {
+      "mse": 269.54490123430384,
+      "r2": 0.061886200613078035,
+      "mae": 13.240416957463363,
+      "rmse": 16.41782267032702,
+      "mape": 22.416371947772696,
+      "smape": 19.923195609310117,
+      "mase": 0.6781785202156304,
+      "rmspe": 33.6939660944905,
+      "huber_loss": 12.748494963799473
+    },
+    "cv_scores": {
+      "r2_scores": "[0.06394463 0.0443104  0.04380592 0.06422033 0.05609164]",
+      "mean_cv_r2": 0.054474585171596444,
+      "std_cv_r2": 0.008993410298667945
+    },
+    "training_time": 0.0038378238677978516,
+    "inference_time": 0.0012099742889404297,
+    "best_params": null,
+    "feature_importance": [
+      {
+        "feature": "netflix_hours",
+        "importance": 2.8830233282044535
+      },
+      {
+        "feature": "social_media_hours",
+        "importance": 2.7192405846061245
+      }
+    ]
+  },
+  {
+    "experiment_name": "only_lifestyle",
+    "config": {
+      "name": "only_lifestyle",
+      "features_to_use": [
+        "sleep_hours",
+        "exercise_frequency",
+        "caffeine_intake",
+        "sleep_quality"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "linear",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": false
+    },
+    "selected_features": [
+      "sleep_hours",
+      "exercise_frequency",
+      "caffeine_intake",
+      "sleep_quality"
+    ],
+    "metrics": {
+      "mse": 246.32490191311248,
+      "r2": 0.14270020111991577,
+      "mae": 12.602335149986997,
+      "rmse": 15.694741218418113,
+      "mape": 21.393483916776354,
+      "smape": 18.988384640531006,
+      "mase": 0.645495759743581,
+      "rmspe": 32.212604614535245,
+      "huber_loss": 12.111632228088318
+    },
+    "cv_scores": {
+      "r2_scores": "[0.11698832 0.14528444 0.1325006  0.10909973 0.13128957]",
+      "mean_cv_r2": 0.12703253257299157,
+      "std_cv_r2": 0.01267774353154205
+    },
+    "training_time": 0.004909992218017578,
+    "inference_time": 0.0012238025665283203,
+    "best_params": null,
+    "feature_importance": [
+      {
+        "feature": "caffeine_intake",
+        "importance": 5.453511222523962
+      },
+      {
+        "feature": "sleep_quality",
+        "importance": 3.4883885549031386
+      },
+      {
+        "feature": "sleep_hours",
+        "importance": 1.3617998705810557
+      },
+      {
+        "feature": "exercise_frequency",
+        "importance": 1.1362730021344216
+      }
+    ]
+  },
+  {
+    "experiment_name": "only_synthetic",
+    "config": {
+      "name": "only_synthetic",
+      "features_to_use": [
+        "stress_proxy",
+        "focus_proxy"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "linear",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": false
+    },
+    "selected_features": [
+      "stress_proxy",
+      "focus_proxy"
+    ],
+    "metrics": {
+      "mse": 280.4245454365426,
+      "r2": 0.024021101656269472,
+      "mae": 13.4111335935799,
+      "rmse": 16.745881446986974,
+      "mape": 22.84457156028548,
+      "smape": 20.15011477427834,
+      "mase": 0.6869226825807319,
+      "rmspe": 34.88689182065276,
+      "huber_loss": 12.919522185275106
+    },
+    "cv_scores": {
+      "r2_scores": "[0.02584103 0.02392143 0.0211886  0.01340337 0.03023638]",
+      "mean_cv_r2": 0.02291816070725843,
+      "std_cv_r2": 0.005596937018171594
+    },
+    "training_time": 0.004743099212646484,
+    "inference_time": 0.0012159347534179688,
+    "best_params": null,
+    "feature_importance": [
+      {
+        "feature": "focus_proxy",
+        "importance": 3.1443504810237632
+      },
+      {
+        "feature": "stress_proxy",
+        "importance": 0.5230395509951251
+      }
+    ]
+  },
+  {
+    "experiment_name": "model_ridge_tuned",
+    "config": {
+      "name": "model_ridge_tuned",
+      "features_to_use": [
+        "study_hours_per_day",
+        "social_media_hours",
+        "netflix_hours",
+        "attendance_percentage",
+        "sleep_hours",
+        "exercise_frequency",
+        "caffeine_intake",
+        "sleep_quality",
+        "stress_proxy",
+        "focus_proxy"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "ridge",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": true,
+      "param_grid": {
+        "alpha": [
+          0.1,
+          1.0,
+          10.0
+        ]
+      }
+    },
+    "selected_features": [
+      "study_hours_per_day",
+      "social_media_hours",
+      "netflix_hours",
+      "attendance_percentage",
+      "sleep_hours",
+      "exercise_frequency",
+      "caffeine_intake",
+      "sleep_quality",
+      "stress_proxy",
+      "focus_proxy"
+    ],
+    "metrics": {
+      "mse": 50.5708533825233,
+      "r2": 0.8239951296141221,
+      "mae": 5.717382832819649,
+      "rmse": 7.111318680984794,
+      "mape": 9.191337844223952,
+      "smape": 8.918306971097891,
+      "mase": 0.2928462329792614,
+      "rmspe": 12.557595179570145,
+      "huber_loss": 5.2386345676141195
+    },
+    "cv_scores": {
+      "best_score": 0.8105733685543026,
+      "mse_scores": "[53.44755758 53.44747789 53.44725131]",
+      "mae_scores": "[5.89079249 5.89081486 5.89106607]",
+      "r2_scores": "[0.81057087 0.81057129 0.81057337]",
+      "rmse_scores": "[7.3096736  7.30966809 7.30965197]"
+    },
+    "training_time": 0.00900411605834961,
+    "inference_time": 0.0015287399291992188,
+    "best_params": {
+      "regressor__alpha": 10.0
+    },
+    "feature_importance": [
+      {
+        "feature": "study_hours_per_day",
+        "importance": 13.759627646152163
+      },
+      {
+        "feature": "social_media_hours",
+        "importance": 3.0679545891294993
+      },
+      {
+        "feature": "sleep_quality",
+        "importance": 2.5632759068342508
+      },
+      {
+        "feature": "netflix_hours",
+        "importance": 2.309499653243754
+      },
+      {
+        "feature": "caffeine_intake",
+        "importance": 1.591330243038453
+      },
+      {
+        "feature": "attendance_percentage",
+        "importance": 1.3613102491278124
+      },
+      {
+        "feature": "exercise_frequency",
+        "importance": 1.3161971969427635
+      },
+      {
+        "feature": "sleep_hours",
+        "importance": 1.0484580767247442
+      },
+      {
+        "feature": "stress_proxy",
+        "importance": 0.7948368558195369
+      },
+      {
+        "feature": "focus_proxy",
+        "importance": 0.6795527756035796
+      }
+    ]
+  },
+  {
+    "experiment_name": "model_lasso_tuned",
+    "config": {
+      "name": "model_lasso_tuned",
+      "features_to_use": [
+        "study_hours_per_day",
+        "social_media_hours",
+        "netflix_hours",
+        "attendance_percentage",
+        "sleep_hours",
+        "exercise_frequency",
+        "caffeine_intake",
+        "sleep_quality",
+        "stress_proxy",
+        "focus_proxy"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "lasso",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": true,
+      "param_grid": {
+        "alpha": [
+          0.01,
+          0.1,
+          1.0
+        ]
+      }
+    },
+    "selected_features": [
+      "study_hours_per_day",
+      "social_media_hours",
+      "netflix_hours",
+      "attendance_percentage",
+      "sleep_hours",
+      "exercise_frequency",
+      "caffeine_intake",
+      "sleep_quality",
+      "stress_proxy",
+      "focus_proxy"
+    ],
+    "metrics": {
+      "mse": 50.56660709633648,
+      "r2": 0.8240099082267012,
+      "mae": 5.716790774310348,
+      "rmse": 7.111020116434525,
+      "mape": 9.190777602941074,
+      "smape": 8.917689227505658,
+      "mase": 0.29281590754728976,
+      "rmspe": 12.559171569502453,
+      "huber_loss": 5.238031201733898
+    },
+    "cv_scores": {
+      "best_score": 0.8105675109401996,
+      "mse_scores": "[53.44863962 53.54224859 60.78190395]",
+      "mae_scores": "[5.89106636 5.89771827 6.30359005]",
+      "r2_scores": "[0.81056751 0.81024103 0.78461279]",
+      "rmse_scores": "[7.30974772 7.3161467  7.79553031]"
+    },
+    "training_time": 0.010655879974365234,
+    "inference_time": 0.0014560222625732422,
+    "best_params": {
+      "regressor__alpha": 0.01
+    },
+    "feature_importance": [
+      {
+        "feature": "study_hours_per_day",
+        "importance": 13.7772956666017
+      },
+      {
+        "feature": "social_media_hours",
+        "importance": 3.0563363846318437
+      },
+      {
+        "feature": "sleep_quality",
+        "importance": 2.5799609081823607
+      },
+      {
+        "feature": "netflix_hours",
+        "importance": 2.299557522549328
+      },
+      {
+        "feature": "caffeine_intake",
+        "importance": 1.5602466180836285
+      },
+      {
+        "feature": "attendance_percentage",
+        "importance": 1.3542002810226452
+      },
+      {
+        "feature": "exercise_frequency",
+        "importance": 1.3122016088939965
+      },
+      {
+        "feature": "sleep_hours",
+        "importance": 1.039482523946503
+      },
+      {
+        "feature": "stress_proxy",
+        "importance": 0.7931200225622945
+      },
+      {
+        "feature": "focus_proxy",
+        "importance": 0.6526116574333157
+      }
+    ]
+  },
+  {
+    "experiment_name": "model_randomforest_tuned",
+    "config": {
+      "name": "model_randomforest_tuned",
+      "features_to_use": [
+        "study_hours_per_day",
+        "social_media_hours",
+        "netflix_hours",
+        "attendance_percentage",
+        "sleep_hours",
+        "exercise_frequency",
+        "caffeine_intake",
+        "sleep_quality",
+        "stress_proxy",
+        "focus_proxy"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "randomforest",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": true,
+      "param_grid": {
+        "n_estimators": [
+          100,
+          200
+        ],
+        "max_depth": [
+          10,
+          20,
+          null
+        ]
+      }
+    },
+    "selected_features": [
+      "study_hours_per_day",
+      "social_media_hours",
+      "netflix_hours",
+      "attendance_percentage",
+      "sleep_hours",
+      "exercise_frequency",
+      "caffeine_intake",
+      "sleep_quality",
+      "stress_proxy",
+      "focus_proxy"
+    ],
+    "metrics": {
+      "mse": 9.022473577577882,
+      "r2": 0.9685985268911756,
+      "mae": 2.0310950554111846,
+      "rmse": 3.00374326092925,
+      "mape": 3.1797648720435356,
+      "smape": 3.137370270287934,
+      "mase": 0.10403335812771382,
+      "rmspe": 4.99303364170619,
+      "huber_loss": 1.6019778327010863
+    },
+    "cv_scores": {
+      "best_score": 0.9555797419888019,
+      "mse_scores": "[19.05565409 18.85868808 12.75272409 12.53120745 12.79926715 12.56415357]",
+      "mae_scores": "[3.1962824  3.18335563 2.41904075 2.39776701 2.4254788  2.40098578]",
+      "r2_scores": "[0.93245822 0.93315346 0.95479495 0.95557974 0.95463121 0.95546333]",
+      "rmse_scores": "[4.36079449 4.33744707 3.56507694 3.53307703 3.57159486 3.5376435 ]"
+    },
+    "training_time": 9.559437036514282,
+    "inference_time": 0.07007694244384766,
+    "best_params": {
+      "regressor__max_depth": 20,
+      "regressor__n_estimators": 200
+    },
+    "feature_importance": [
+      {
+        "feature": "study_hours_per_day",
+        "importance": 0.6978113978537978
+      },
+      {
+        "feature": "social_media_hours",
+        "importance": 0.05252615138501212
+      },
+      {
+        "feature": "netflix_hours",
+        "importance": 0.0455054477175087
+      },
+      {
+        "feature": "focus_proxy",
+        "importance": 0.04102005911997055
+      },
+      {
+        "feature": "stress_proxy",
+        "importance": 0.03642659372355526
+      },
+      {
+        "feature": "sleep_hours",
+        "importance": 0.03160117566742565
+      },
+      {
+        "feature": "exercise_frequency",
+        "importance": 0.03145401837219409
+      },
+      {
+        "feature": "attendance_percentage",
+        "importance": 0.03047573711307803
+      },
+      {
+        "feature": "caffeine_intake",
+        "importance": 0.019782335088440347
+      },
+      {
+        "feature": "sleep_quality",
+        "importance": 0.013397083959017569
+      }
+    ]
+  },
+  {
+    "experiment_name": "model_gradientboosting_tuned",
+    "config": {
+      "name": "model_gradientboosting_tuned",
+      "features_to_use": [
+        "study_hours_per_day",
+        "social_media_hours",
+        "netflix_hours",
+        "attendance_percentage",
+        "sleep_hours",
+        "exercise_frequency",
+        "caffeine_intake",
+        "sleep_quality",
+        "stress_proxy",
+        "focus_proxy"
+      ],
+      "scaler_type": "standard",
+      "encoder_type": "onehot",
+      "model_type": "gradientboosting",
+      "model_kwargs": {},
+      "do_hyperparameter_tuning": true,
+      "param_grid": {
+        "n_estimators": [
+          100,
+          200
+        ],
+        "learning_rate": [
+          0.01,
+          0.1,
+          0.2
+        ]
+      }
+    },
+    "selected_features": [
+      "study_hours_per_day",
+      "social_media_hours",
+      "netflix_hours",
+      "attendance_percentage",
+      "sleep_hours",
+      "exercise_frequency",
+      "caffeine_intake",
+      "sleep_quality",
+      "stress_proxy",
+      "focus_proxy"
+    ],
+    "metrics": {
+      "mse": 29.13950867256406,
+      "r2": 0.8985839647943291,
+      "mae": 4.196947905387151,
+      "rmse": 5.398102321424082,
+      "mape": 6.665956739478215,
+      "smape": 6.526689521109224,
+      "mase": 0.2149690549052653,
+      "rmspe": 9.296126316526026,
+      "huber_loss": 3.7257673277348315
+    },
+    "cv_scores": {
+      "best_score": 0.8902916715922334,
+      "mse_scores": "[104.75518198  69.26207373  40.67666858  36.05652243  36.25419012\n  30.97698338]",
+      "mae_scores": "[8.29840645 6.75960326 5.07154893 4.72945866 4.74483461 4.32423962]",
+      "r2_scores": "[0.62929497 0.75471172 0.85581848 0.87220817 0.8715636  0.89029167]",
+      "rmse_scores": "[10.23312022  8.32110801  6.37462144  6.00124357  6.01811454  5.56283926]"
+    },
+    "training_time": 3.9271128177642822,
+    "inference_time": 0.005845785140991211,
+    "best_params": {
+      "regressor__learning_rate": 0.2,
+      "regressor__n_estimators": 200
+    },
+    "feature_importance": [
+      {
+        "feature": "study_hours_per_day",
+        "importance": 0.7542915993409653
+      },
+      {
+        "feature": "social_media_hours",
+        "importance": 0.04749624760112697
+      },
+      {
+        "feature": "focus_proxy",
+        "importance": 0.03904023757529684
+      },
+      {
+        "feature": "netflix_hours",
+        "importance": 0.03528491544571566
+      },
+      {
+        "feature": "exercise_frequency",
+        "importance": 0.027789732921474013
+      },
+      {
+        "feature": "stress_proxy",
+        "importance": 0.0253340237282224
+      },
+      {
+        "feature": "sleep_quality",
+        "importance": 0.022432570709880317
+      },
+      {
+        "feature": "sleep_hours",
+        "importance": 0.01712216834095916
+      },
+      {
+        "feature": "attendance_percentage",
+        "importance": 0.01669794783509819
+      },
+      {
+        "feature": "caffeine_intake",
+        "importance": 0.014510556501261028
+      }
+    ]
+  }
+]

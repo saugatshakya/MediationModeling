@@ -1,0 +1,119 @@
+digraph ML_Pipeline {
+    rankdir=LR;
+    node [shape=box, style=filled, fillcolor=lightblue, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
+
+    // Data sources and initial processing
+    Original_Data [label="Original Dataset\n(1,000 student records)", fillcolor=lightgreen];
+    Train_Test_Split [label="Train/Test Split\n(80/20)", fillcolor=lightcyan];
+    Train_Data [label="Train Set\n(800 records)", fillcolor=lightcyan];
+    Test_Data [label="Test Set\n(200 records)", fillcolor=lightcyan];
+
+    // Data expansion
+    Bootstrap_Sampling [label="Bootstrap Sampling\n(with replacement)", fillcolor=lightyellow];
+    Gaussian_Noise [label="Add Gaussian Noise\n(5% std deviation)", fillcolor=lightyellow];
+    Outlier_Generation [label="Generate Outliers\n(8% of samples)", fillcolor=lightyellow];
+    Expanded_Data [label="Expanded Dataset\n(10,000 records)", fillcolor=lightyellow];
+
+    // Feature engineering
+    Feature_Engineering [label="Feature Engineering", fillcolor=orange];
+    Caffeine_Intake [label="Caffeine Intake\n(drink selection)", fillcolor=orange];
+    Sleep_Quality [label="Sleep Quality\n(physiological formula)", fillcolor=orange];
+    Mental_Health [label="Mental Health Rating\n(lifestyle formula)", fillcolor=orange];
+    Stress_Proxy [label="Stress Proxy\n(caffeine + lifestyle)", fillcolor=orange];
+    Focus_Proxy [label="Focus Proxy\n(sleep + caffeine + social)", fillcolor=orange];
+
+    // Preprocessing pipeline
+    Preprocessing [label="Preprocessing Pipeline", fillcolor=pink];
+    Imputation [label="Imputation\n(median/most_frequent)", fillcolor=pink];
+    Standard_Scaling [label="Standard Scaling\n(mean=0, std=1)", fillcolor=pink];
+    OneHot_Encoding [label="One-Hot Encoding\n(categorical features)", fillcolor=pink];
+
+    // Model training and evaluation
+    Model_Training [label="Model Training", fillcolor=red];
+    RandomForest [label="Random Forest\n(n_estimators, max_depth)", fillcolor=red];
+    Hyperparameter_Tuning [label="Grid Search CV\n(5-fold cross-validation)", fillcolor=red];
+    Cross_Validation [label="Cross-Validation\n(R², MSE, MAE)", fillcolor=red];
+    Model_Evaluation [label="Model Evaluation\n(Test Set: R² = 0.972)", fillcolor=purple];
+
+    // Streamlit application
+    Streamlit_App [label="Streamlit Application", fillcolor=lightcoral];
+    Real_Time_Prediction [label="Real-time Prediction", fillcolor=lightcoral];
+    Optimization_Engine [label="Score Optimization", fillcolor=lightcoral];
+
+    // Edges showing data flow
+    Original_Data -> Train_Test_Split;
+    Train_Test_Split -> Train_Data;
+    Train_Test_Split -> Test_Data;
+
+    Train_Data -> Bootstrap_Sampling;
+    Bootstrap_Sampling -> Gaussian_Noise;
+    Gaussian_Noise -> Outlier_Generation;
+    Outlier_Generation -> Expanded_Data;
+
+    Expanded_Data -> Feature_Engineering;
+    Feature_Engineering -> Caffeine_Intake;
+    Feature_Engineering -> Sleep_Quality;
+    Feature_Engineering -> Mental_Health;
+    Feature_Engineering -> Stress_Proxy;
+    Feature_Engineering -> Focus_Proxy;
+
+    Caffeine_Intake -> Preprocessing;
+    Sleep_Quality -> Preprocessing;
+    Mental_Health -> Preprocessing;
+    Stress_Proxy -> Preprocessing;
+    Focus_Proxy -> Preprocessing;
+
+    Preprocessing -> Imputation;
+    Imputation -> Standard_Scaling;
+    Standard_Scaling -> OneHot_Encoding;
+
+    OneHot_Encoding -> Model_Training;
+    Model_Training -> RandomForest;
+    RandomForest -> Hyperparameter_Tuning;
+    Hyperparameter_Tuning -> Cross_Validation;
+    Cross_Validation -> Model_Evaluation;
+
+    Model_Evaluation -> Streamlit_App;
+    Streamlit_App -> Real_Time_Prediction;
+    Streamlit_App -> Optimization_Engine;
+
+    // Layout constraints for better visualization
+    {rank=same; Original_Data; Train_Test_Split}
+    {rank=same; Train_Data; Test_Data}
+    {rank=same; Bootstrap_Sampling; Gaussian_Noise; Outlier_Generation}
+    {rank=same; Caffeine_Intake; Sleep_Quality; Mental_Health; Stress_Proxy; Focus_Proxy}
+    {rank=same; Imputation; Standard_Scaling; OneHot_Encoding}
+    {rank=same; RandomForest; Hyperparameter_Tuning}
+    {rank=same; Cross_Validation; Model_Evaluation}
+    {rank=same; Real_Time_Prediction; Optimization_Engine}
+
+    // Add subgraph for better organization
+    subgraph cluster_data_prep {
+        label="Data Preparation";
+        style=dashed;
+        color=gray;
+        Original_Data Train_Test_Split Train_Data Test_Data Bootstrap_Sampling Gaussian_Noise Outlier_Generation Expanded_Data
+    }
+
+    subgraph cluster_feature_eng {
+        label="Feature Engineering";
+        style=dashed;
+        color=orange;
+        Feature_Engineering Caffeine_Intake Sleep_Quality Mental_Health Stress_Proxy Focus_Proxy
+    }
+
+    subgraph cluster_model {
+        label="Model Development";
+        style=dashed;
+        color=red;
+        Preprocessing Imputation Standard_Scaling OneHot_Encoding Model_Training RandomForest Hyperparameter_Tuning Cross_Validation Model_Evaluation
+    }
+
+    subgraph cluster_deployment {
+        label="Application";
+        style=dashed;
+        color=blue;
+        Streamlit_App Real_Time_Prediction Optimization_Engine
+    }
+}

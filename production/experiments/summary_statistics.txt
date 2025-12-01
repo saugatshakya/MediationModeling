@@ -1,0 +1,20 @@
+ABLATION STUDY SUMMARY STATISTICS
+============================================================
+
+Total experiments: 13
+Best R²: 0.9686
+Best MSE: 9.02
+Best experiment: model_randomforest_tuned
+
+Top 10 Results:
+                  experiment   scaler encoder            model        mse       r2       mae      rmse  training_time  inference_time
+    model_randomforest_tuned standard  onehot     randomforest   9.022474 0.968599  2.031095  3.003743       9.559437        0.070077
+model_gradientboosting_tuned standard  onehot gradientboosting  29.139509 0.898584  4.196948  5.398102       3.927113        0.005846
+       baseline_all_features standard  onehot           linear  50.565211 0.824015  5.716905  7.110922       0.015252        0.001368
+           model_lasso_tuned standard  onehot            lasso  50.566607 0.824010  5.716791  7.111020       0.010656        0.001456
+           model_ridge_tuned standard  onehot            ridge  50.570853 0.823995  5.717383  7.111319       0.009004        0.001529
+            ablate_synthetic standard  onehot           linear  50.915939 0.822794  5.739351  7.135541       0.009359        0.001303
+            ablate_lifestyle standard  onehot           linear  59.180835 0.794029  6.178571  7.692908       0.006713        0.001430
+          ablate_screen_time standard  onehot           linear  63.696847 0.778312  6.377212  7.981030       0.008914        0.001462
+           only_study_habits standard  onehot           linear  93.001821 0.676320  7.768253  9.643745       0.003807        0.001254
+         ablate_study_habits standard  onehot           linear 207.397498 0.278182 11.512286 14.401302       0.008097        0.001442

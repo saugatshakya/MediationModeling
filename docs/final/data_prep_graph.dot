@@ -1,0 +1,33 @@
+digraph Data_Preparation {
+    rankdir=TB;
+    node [shape=box, style=filled, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
+
+    // Data sources
+    Original_Data [label="Original Dataset\n(1,000 student records)", fillcolor=lightgreen];
+    Train_Test_Split [label="Train/Test Split\n(80/20)", fillcolor=lightcyan];
+    Train_Data [label="Train Set\n(800 records)", fillcolor=lightcyan];
+    Test_Data [label="Test Set\n(200 records)", fillcolor=lightcyan];
+
+    // Data expansion
+    Bootstrap_Sampling [label="Bootstrap Sampling\n(with replacement)", fillcolor=lightyellow];
+    Gaussian_Noise [label="Add Gaussian Noise\n(5% std deviation)", fillcolor=lightyellow];
+    Outlier_Generation [label="Generate Outliers\n(8% of samples)", fillcolor=lightyellow];
+    Expanded_Data [label="Expanded Dataset\n(10,000 records)", fillcolor=lightyellow];
+
+    // Edges
+    Original_Data -> Train_Test_Split;
+    Train_Test_Split -> Train_Data;
+    Train_Test_Split -> Test_Data;
+    Train_Data -> Bootstrap_Sampling;
+    Bootstrap_Sampling -> Gaussian_Noise;
+    Gaussian_Noise -> Outlier_Generation;
+    Outlier_Generation -> Expanded_Data;
+
+    // Layout
+    {rank=same; Train_Data; Test_Data}
+    {rank=same; Bootstrap_Sampling; Gaussian_Noise; Outlier_Generation}
+
+    labelloc="t";
+    label="Slide 1: Data Preparation Pipeline";
+}

@@ -1,0 +1,98 @@
+version: '3.8'
+
+services:
+  # Main application service - Streamlit Frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: exam-predictor-frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount data directory from parent
+      - ../data:/app/data:ro
+      # Persist artifacts and experiments
+      - ./artifacts:/app/artifacts
+      - ./experiments:/app/experiments
+      # Mount source for development (comment out for production)
+      - ./src:/app/src
+      - ./frontend:/app/frontend
+    environment:
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+    networks:
+      - exam-predictor-network
+
+  # Experiment runner service (run once or on-demand)
+  experiment-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: exam-predictor-experiments
+    volumes:
+      - ../data:/app/data:ro
+      - ./artifacts:/app/artifacts
+      - ./experiments:/app/experiments
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python run_experiment.py
+    networks:
+      - exam-predictor-network
+    profiles:
+      - experiments
+
+  # Evaluation service (run on-demand)
+  evaluator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: exam-predictor-evaluator
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./experiments:/app/experiments
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python evaluate.py
+    networks:
+      - exam-predictor-network
+    profiles:
+      - evaluation
+    depends_on:
+      - experiment-runner
+
+  # Jupyter notebook service for development
+  notebook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: exam-predictor-notebook
+    ports:
+      - "8888:8888"
+    volumes:
+      - ../data:/app/data:ro
+      - ./artifacts:/app/artifacts
+      - ./experiments:/app/experiments
+      - ./src:/app/src
+      - ./test_pipeline.ipynb:/app/test_pipeline.ipynb
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+    networks:
+      - exam-predictor-network
+    profiles:
+      - development
+
+networks:
+  exam-predictor-network:
+    driver: bridge
+
+volumes:
+  artifacts-data:
+  experiments-data:
